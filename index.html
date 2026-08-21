@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title></title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- If JavaScript is unavailable, skip the preloader entirely
+         so the poster is never left hidden behind it. -->
+    <noscript>
+        <style>
+            #preloader { display: none !important; }
+            .poster-wrap { opacity: 1 !important; transform: none !important; }
+        </style>
+    </noscript>
+</head>
+
+
+<body>
+<audio
+    id="birthdayAudio"
+    src="music1.mp3"
+    preload="auto"
+    loop>
+</audio>
+<!-- =========================================================
+     PRELOADER
+     Two sub-states inside the same overlay: a quick loading
+     spinner, then (if the reveal date hasn't arrived yet) a
+     countdown. Everything from here down is unchanged.
+========================================================== -->
+<div id="preloader">
+    <div class="preloader-card">
+
+        <div id="preloader-loading">
+            <div class="preloader-ring"></div>
+           
+        </div>
+        <br>
+        <div id="location-gate">
+            <p id="location-status"></p>
+            <button id="allowLocationBtn" type="button">Click Here to Start...</button>
+        </div>
+
+        <div id="preloader-countdown" hidden>
+            <p class="countdown-eyebrow">Unlocks in</p>
+            <div class="countdown-grid" aria-label="Birthday countdown">
+                <div class="countdown-unit"><span id="cd-days">00</span><label>Days</label></div>
+                <span class="countdown-separator" aria-hidden="true">:</span>
+                <div class="countdown-unit"><span id="cd-hours">00</span><label>Hrs</label></div>
+                <span class="countdown-separator" aria-hidden="true">:</span>
+                <div class="countdown-unit"><span id="cd-mins">00</span><label>Min</label></div>
+                <span class="countdown-separator" aria-hidden="true">:</span>
+                <div class="countdown-unit"><span id="cd-secs">00</span><label>Sec</label></div>
+            </div>
+            <p class="countdown-sub"></p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Floating controls: music -->
+<div id="fab-stack" class="fab-stack">
+    <button id="openWishes" class="fab wish-fab" type="button" aria-label="Open wishes">💌</button>
+    <button id="audioToggle" class="fab" type="button" aria-label="Toggle background music">🔇</button>
+</div>
+
+<!-- =========================================================
+     WISHES POPUP
+========================================================= -->
+<div id="wishesPopup" class="popup" aria-hidden="true">
+    <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="wishesTitle">
+        <button class="close-btn" id="closePopup" type="button" aria-label="Close wishes">&times;</button>
+
+        <h2 id="wishesTitle">Send your wishes</h2>
+
+        <form id="wishesForm">
+            <input id="wisherName" type="text" placeholder="Your Name" maxlength="80" autocomplete="name" required>
+            <textarea id="wisherMessage" placeholder="Your Message" maxlength="500" required></textarea>
+
+            <div class="form-row">
+                <button type="submit" class="send-btn">Send</button>
+                <button type="button" class="close-form-btn" id="closePopup2">Close</button>
+            </div>
+        </form>
+
+        <p id="thanksMessage" hidden>Thank you for your wishes! 🎉</p>
+    </div>
+</div>
+
+<div class="poster-wrap">
+
+    <main class="poster">
+
+        <!-- Background glow -->
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+
+        <!-- Soft ambient bokeh + a few extra balloons, both play
+             once at reveal and then remove themselves -->
+        <canvas id="ambient-bokeh"></canvas>
+        <div id="extra-balloons"></div>
+
+
+        <!-- Decorative dots -->
+        <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+
+        <!-- Top sparkle -->
+        <div class="corner-star"></div>
+        <!-- FLOW-BASED HEADER -->
+        <header class="poster-header">
+            <div class="happy">Happy</div>
+            <div class="birthday">Birthday</div>
+            <div class="name">SHANVIKA</div>
+            <div class="eyebrow">OUR LITTLE SUNSHINE TURNS</div>
+        </header>
+
+
+
+        <!-- =========================================
+             ANIMATED PHOTO NUMBER 2
+        ========================================== -->
+
+        <section class="number-section">
+            <div class="number-container">
+
+            <!-- Gold glow behind number -->
+            <div class="number-glow"></div>
+
+
+            <!-- White/gold outer border -->
+            <div class="number-outline">
+                2
+            </div>
+
+
+            <!--
+                Each layer is another Shanvika photograph.
+
+                All layers contain the same "2".
+                CSS clips the photograph to the shape
+                of the number.
+            -->
+
+            <div class="photo-number photo-1">
+                2
+            </div>
+
+            <div class="photo-number photo-2">
+                2
+            </div>
+
+            <div class="photo-number photo-3">
+                2
+            </div>
+
+            <div class="photo-number photo-4">
+                2
+            </div>
+
+            <div class="photo-number photo-5">
+                2
+            </div>
+
+            <div class="photo-number photo-6">
+                2
+            </div>
+
+
+            <!-- Gold highlight -->
+            <div class="number-highlight">
+                2
+            </div>
+
+        </div>
+        </section>
+
+
+        <!-- =========================================
+             FLOATING DECORATION
+        ========================================== -->
+
+        <div class="sparkle sparkle-one"></div>
+        <div class="sparkle sparkle-two"></div>
+        <div class="sparkle sparkle-three"></div>
+
+
+        <div class="heart heart-one"></div>
+        <div class="heart heart-two"></div>
+
+
+        <div class="balloon balloon-one"></div>
+        <div class="balloon balloon-two"></div>
+        <div class="balloon balloon-three"></div>
+        <div class="balloon balloon-four"></div>
+        <div class="balloon balloon-five"></div>
+        <div class="balloon balloon-six"></div>
+
+
+        <!-- =========================================
+             TIMELINE
+        ========================================== -->
+
+        <section class="details-section">
+            <div class="timeline">
+
+            <div class="timeline-line">
+
+                <span class="timeline-dot"></span>
+
+                <span class="timeline-dash"></span>
+
+                <span class="timeline-dot current"></span>
+
+            </div>
+
+
+            <div class="timeline-labels">
+
+                <span>2024</span>
+
+                <span>2026</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             NAME
+        ========================================== -->
+   
+     
+        <!-- Date -->
+
+        <div class="date">
+            22 · AUGUST · 2026
+        </div>
+
+
+        <!-- Footer -->
+
+        <div class="message">
+            Two years of love, laughter &amp; little miracles
+        </div>
+        </section>
+
+        <section class="birthday-note">
+
+
+
+
+                <p>
+                    May your days always be filled
+                  with wonder, your little heart
+                    with kindness, and your beautiful
+                    smile with endless reasons to shine.
+
+                </p>
+
+
+                <div class="note-sign">
+                    With all our love ❤️
+                </div>
+
+
+            </section>
+        <!-- One-time sparkle burst that plays when the preloader
+             clears, then quietly removes itself -->
+        <canvas id="reveal-burst"></canvas>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
